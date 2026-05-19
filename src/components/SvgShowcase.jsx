@@ -84,10 +84,10 @@ function SvgShowcase() {
 
   return (
     <motion.section
-      initial={{ opacity: 0, scale: 0.97 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, y: 25 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className="relative py-24 lg:py-36 px-6 md:px-16 lg:px-24 overflow-hidden" id="experiments">
       <div className="max-w-6xl mx-auto">
         <div className="mb-12">

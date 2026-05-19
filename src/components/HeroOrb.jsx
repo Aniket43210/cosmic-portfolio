@@ -30,14 +30,14 @@ function HeroOrb() {
     }
     window.addEventListener('mousemove', mousemove)
 
-    const stars = Array.from({ length: 40 }, () => ({
+    const stars = Array.from({ length: 20 }, () => ({
       x: Math.random() * 100, y: Math.random() * 100,
       r: 0.3 + Math.random() * 1,
       s: 0.2 + Math.random() * 0.5,
       p: Math.random() * TAU,
     }))
 
-    const floaters = Array.from({ length: 12 }, () => ({
+    const floaters = Array.from({ length: 6 }, () => ({
       x: (Math.random() - 0.5) * 60, y: (Math.random() - 0.5) * 60,
       vx: (Math.random() - 0.5) * 0.15, vy: (Math.random() - 0.5) * 0.15,
       r: 0.5 + Math.random() * 1.5,
@@ -145,7 +145,7 @@ function HeroOrb() {
     }
   }, [])
 
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-0" style={{ opacity: 0.7 }} />
+  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-0" style={{ opacity: 0.45 }} />
 }
 
 export default HeroOrb

@@ -6,7 +6,7 @@ import Background from './components/Background'
 import Cursor from './components/Cursor'
 import Particles from './components/Particles'
 import Hero from './components/Hero'
-import SvgShowcase from './components/SvgShowcase'
+import Capabilities from './components/Capabilities'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
 import TechConstellation from './components/TechConstellation'
@@ -14,6 +14,7 @@ import Currently from './components/Currently'
 import Contact from './components/Contact'
 import RippleEffect from './components/RippleEffect'
 import LoadScreen from './components/LoadScreen'
+import ThreeScene from './components/ThreeScene'
 import CaseStudyModal from './components/CaseStudyModal'
 import { projects } from './data/projects'
 
@@ -54,7 +55,7 @@ function Navbar() {
           <span className="text-sm font-semibold text-white tracking-tight opacity-70 group-hover:opacity-100 transition-opacity duration-300">Portfolio</span>
         </a>
         <div className="flex items-center gap-8">
-          {['Work', 'Experiments', 'Skills', 'Now', 'Contact'].map((l) => {
+          {['Work', 'Capabilities', 'Skills', 'Now', 'Contact'].map((l) => {
             const id = l.toLowerCase()
             return (
               <a key={l} href={`#${id}`} data-magnetic className={`text-xs tracking-wider uppercase relative group transition-colors duration-300 ${active === id ? 'text-ember-400' : 'text-charcoal-500 hover:text-ember-400'}`}>
@@ -74,6 +75,7 @@ function App() {
   const [projectPage, setProjectPage] = useState(null)
   const firstLoad = useRef(true)
   const lenisRef = useRef(null)
+  const scrollRef = useRef(0)
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -83,7 +85,7 @@ function App() {
       touchMultiplier: 1.8,
       smoothWheel: true,
     })
-    function raf(t) { lenis.raf(t); requestAnimationFrame(raf) }
+    function raf(t) { lenis.raf(t); scrollRef.current = window.scrollY; requestAnimationFrame(raf) }
     requestAnimationFrame(raf)
     lenisRef.current = lenis
     return () => lenis.destroy()
@@ -92,6 +94,18 @@ function App() {
   useEffect(() => {
     if (projectPage) { lenisRef.current?.stop() } else { lenisRef.current?.start() }
   }, [projectPage])
+
+  useEffect(() => {
+    const links = document.querySelectorAll('a[href^="#"]')
+    const handleClick = (e) => {
+      const href = e.currentTarget.getAttribute('href')
+      if (!href || href === '#') return
+      e.preventDefault()
+      lenisRef.current?.scrollTo(href)
+    }
+    links.forEach(l => l.addEventListener('click', handleClick))
+    return () => links.forEach(l => l.removeEventListener('click', handleClick))
+  }, [])
 
   useEffect(() => { firstLoad.current = false }, [])
 
@@ -105,15 +119,16 @@ function App() {
         <>
           {firstLoad.current && <LoadScreen />}
           <RippleEffect />
-          <Background />
+          <Background scrollRef={scrollRef} />
+          <ThreeScene scrollRef={scrollRef} />
           <div className="grain" />
-          <Particles count={15} />
+          <Particles count={6} />
           <Cursor />
           <Navbar />
           <main>
             <Hero />
             <Projects onOpenStudy={(p) => setProjectPage(p)} />
-            <SvgShowcase />
+            <Capabilities />
             <Currently />
             <Skills />
             <TechConstellation />

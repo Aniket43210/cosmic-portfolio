@@ -3,4 +3,18 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          three: ['three'],
+          framer: ['framer-motion'],
+          motion: ['animejs', 'gsap'],
+        },
+      },
+    },
+  },
+  server: {
+    allowedHosts: ['carrot-freebee-anemic.ngrok-free.dev'],
+  },
 })

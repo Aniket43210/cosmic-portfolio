@@ -44,24 +44,23 @@ function Cursor() {
 
     window.addEventListener('mousemove', handleMouse)
     let id, frameCount = 0
-    const particles = []
 
     function spawnParticle(x, y) {
       const el = document.createElement('div')
-      const size = 1.5 + Math.random() * 3
+      const size = 1.5 + Math.random() * 2
       const a = Math.random() * Math.PI * 2
-      const d = 15 + Math.random() * 35
-      el.style.cssText = `position:fixed;left:${x-size/2}px;top:${y-size/2}px;width:${size}px;height:${size}px;border-radius:50%;background:rgba(251,146,60,0.5);pointer-events:none;z-index:9997;transition:all ${500+Math.random()*400}ms ease-out;transform:translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px);opacity:0`
+      const d = 10 + Math.random() * 20
+      const duration = 400 + Math.random() * 300
+      el.style.cssText = `position:fixed;left:${x-size/2}px;top:${y-size/2}px;width:${size}px;height:${size}px;border-radius:50%;background:rgba(251,146,60,0.4);pointer-events:none;z-index:9997;transition:transform ${duration}ms ease-out,opacity ${duration}ms ease-out;transform:translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px);opacity:0`
       document.body.appendChild(el)
-      particles.push(el)
-      setTimeout(() => { el.remove(); const idx = particles.indexOf(el); if (idx > -1) particles.splice(idx, 1) }, 900)
+      setTimeout(() => { try { el.remove() } catch(e) {} }, duration + 50)
     }
 
     function tick() {
-      pos.current.x += (target.current.x - pos.current.x) * 0.1
-      pos.current.y += (target.current.y - pos.current.y) * 0.1
+      pos.current.x += (target.current.x - pos.current.x) * 0.12
+      pos.current.y += (target.current.y - pos.current.y) * 0.12
 
-      if (++frameCount % 3 === 0 && !hovering.current) {
+      if (++frameCount % 5 === 0 && !hovering.current && Math.abs(target.current.x - pos.current.x) > 2) {
         spawnParticle(target.current.x, target.current.y)
       }
 
@@ -85,7 +84,6 @@ function Cursor() {
     return () => {
       window.removeEventListener('mousemove', handleMouse)
       cancelAnimationFrame(id)
-      particles.forEach(el => el.remove())
     }
   }, [])
 

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import HeroOrb from './HeroOrb'
+import HeroCanvas from './HeroCanvas'
 
 const heroVariants = {
   hidden: {},
@@ -17,38 +17,31 @@ const fadeUpVariants = {
 }
 
 function Hero() {
-  const hour = new Date().getHours()
-  const greeting = hour < 12 ? 'Morning' : hour < 18 ? 'Afternoon' : 'Evening'
-
   return (
     <motion.section
       initial="hidden"
       animate="visible"
       className="relative min-h-screen flex items-center px-6 md:px-16 lg:px-24 overflow-hidden">
-      <HeroOrb />
-
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-midnight-950/20 to-midnight-950/80 pointer-events-none z-[1]" />
+      <HeroCanvas />
 
       <motion.div className="relative z-10 w-full max-w-6xl mx-auto" variants={heroVariants} initial="hidden" animate="visible">
         <div className="max-w-4xl">
           <motion.span variants={blurRevealVariants} className="text-xs text-ember-400 tracking-[0.3em] uppercase font-medium mb-6 block">
-            {greeting} Developer
+            AI · Full Stack · Creative
           </motion.span>
 
           <motion.h1 variants={heroVariants} className="mb-10" style={{ fontSize: 'clamp(3.5rem, 12vw, 9rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.8 }}>
-            <motion.span variants={blurRevealVariants} className="block text-gradient-ember">
-              Build
+            <motion.span variants={blurRevealVariants} className="block" style={{ background: 'linear-gradient(135deg, #fb923c, #d946ef, #22d3ee)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              AI. Code.
             </motion.span>
             <motion.span variants={blurRevealVariants} className="block text-white">
-              With
-            </motion.span>
-            <motion.span variants={blurRevealVariants} className="block text-gradient-surge">
-              Intention
+              Creativity.
             </motion.span>
           </motion.h1>
 
           <motion.p variants={blurRevealVariants} className="text-base sm:text-lg text-charcoal-400 font-light max-w-xl leading-relaxed mb-10">
-            I craft digital experiences where every pixel, every motion, and every interaction serves a purpose.
+            Full-stack developer at the intersection of AI engineering and creative design. I build intelligent systems with soul — where machine learning meets meaningful interaction.
           </motion.p>
 
           <motion.div variants={fadeUpVariants} className="flex flex-wrap gap-3">
