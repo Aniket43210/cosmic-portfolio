@@ -119,7 +119,7 @@ function Contact() {
               <span className="text-[10px] text-charcoal-500 tracking-[0.2em] uppercase block mb-4">Info</span>
               <div className="space-y-3">
                 {[
-                  { label: 'Email', value: 'hello@example.com', color: '#fb923c' },
+                  { label: 'Email', value: 'sangvi412@gmail.com', color: '#fb923c' },
                   { label: 'Location', value: 'Remote · Worldwide', color: '#22d3ee' },
                   { label: 'Availability', value: 'Open to projects', color: '#34d399' },
                 ].map((i) => (
@@ -136,9 +136,8 @@ function Contact() {
               <span className="text-[10px] text-charcoal-500 tracking-[0.2em] uppercase block mb-4">Connect</span>
               <div className="flex flex-wrap gap-2">
                 {[
-                  { label: 'GitHub', url: 'https://github.com/yourhandle', color: '#fb923c' },
-                  { label: 'LinkedIn', url: 'https://linkedin.com/in/yourhandle', color: '#22d3ee' },
-                  { label: 'Twitter', url: 'https://twitter.com/yourhandle', color: '#d946ef' },
+                  { label: 'GitHub', url: 'https://github.com/Aniket43210', color: '#fb923c' },
+                  { label: 'LinkedIn', url: 'https://www.linkedin.com/in/aniket-kumar-singh-78a12629a/', color: '#22d3ee' },
                 ].map((s) => (
                   <a
                     key={s.label}

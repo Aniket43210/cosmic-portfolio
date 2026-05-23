@@ -43,6 +43,14 @@ function CaseStudyModal({ project, onClose }) {
           </div>
         </div>
 
+        {project.screenshots && project.screenshots.length > 0 && (
+          <div data-csreveal className="mb-10 grid grid-cols-2 gap-4" style={{ opacity: 0 }}>
+            {project.screenshots.map((s, i) => (
+              <img key={i} src={s} alt={`${project.title} screenshot ${i + 1}`} className="w-full h-auto object-cover object-top rounded-xl border border-white/5" style={{ maxHeight: 350 }} />
+            ))}
+          </div>
+        )}
+
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           <div className="md:col-span-2">
             <h2 data-csreveal className="text-sm font-semibold text-white mb-3 tracking-tight" style={{ opacity: 0 }}>Overview</h2>

@@ -9,49 +9,57 @@ const clusters = [
     items: [
       { name: 'React', desc: 'Component-based UI library for modern web interfaces' },
       { name: 'Next.js', desc: 'React framework with SSR, routing, and optimized builds' },
-      { name: 'TailwindCSS', desc: 'Utility-first CSS framework for rapid UI development' },
-      { name: 'Vite', desc: 'Next-gen build tool with instant HMR' },
+      { name: 'TypeScript', desc: 'Typed superset of JavaScript for scalable applications' },
+      { name: 'Tailwind CSS', desc: 'Utility-first CSS framework for rapid UI development' },
+      { name: 'Framer Motion', desc: 'Production-ready React animation library' },
       { name: 'Three.js', desc: '3D graphics library bringing WebGL to the browser' },
-      { name: 'WebGL', desc: 'Low-level GPU rendering API for the web' },
+      { name: 'Chart.js', desc: 'Simple yet flexible JavaScript charting library' },
+      { name: 'JavaScript', desc: 'Core language of the web platform' },
     ],
   },
   {
-    label: 'Motion', color: '#22d3ee',
+    label: 'Backend', color: '#22d3ee',
     items: [
-      { name: 'GSAP', desc: 'Professional-grade animation platform for the web' },
-      { name: 'Anime.js', desc: 'Lightweight flexible JavaScript animation engine' },
-      { name: 'Framer', desc: 'Production-ready React animation library' },
-      { name: 'Lenis', desc: 'Smooth scroll controller with custom easing' },
-    ],
-  },
-  {
-    label: 'Backend', color: '#d946ef',
-    items: [
-      { name: 'Node.js', desc: 'JavaScript runtime built on Chrome V8 engine' },
       { name: 'Python', desc: 'Versatile language for backend and data science' },
-      { name: 'Rust', desc: 'Systems language with memory safety guarantees' },
-      { name: 'PostgreSQL', desc: 'Advanced relational database management system' },
-      { name: 'Redis', desc: 'In-memory data structure store and cache' },
-      { name: 'GraphQL', desc: 'Query language and runtime for APIs' },
+      { name: 'FastAPI', desc: 'Modern Python web framework for building APIs' },
+      { name: 'Node.js', desc: 'JavaScript runtime built on Chrome V8 engine' },
+      { name: 'Express', desc: 'Minimal Node.js web framework for building APIs' },
+      { name: 'REST API', desc: 'Architectural style for networked applications' },
+      { name: 'JWT', desc: 'JSON Web Tokens for stateless authentication' },
     ],
   },
   {
-    label: 'Infra', color: '#34d399',
+    label: 'ML/AI', color: '#d946ef',
+    items: [
+      { name: 'XGBoost', desc: 'Gradient boosting framework for ML predictions' },
+      { name: 'SHAP', desc: 'Explainable AI for model prediction interpretation' },
+      { name: 'CNN', desc: 'Convolutional neural networks for spectral/image analysis' },
+      { name: 'Transformers', desc: 'Attention-based architecture for sequence modeling' },
+      { name: 'Scikit-learn', desc: 'Machine learning library for Python' },
+      { name: 'Feature Engineering', desc: 'Domain-driven feature creation for ML models' },
+      { name: 'Model Deployment', desc: 'Serving ML models in production environments' },
+    ],
+  },
+  {
+    label: 'Data & Storage', color: '#34d399',
+    items: [
+      { name: 'PostgreSQL', desc: 'Advanced relational database management system' },
+      { name: 'MongoDB', desc: 'NoSQL document database for flexible schemas' },
+      { name: 'Redis', desc: 'In-memory data structure store and cache' },
+      { name: 'SQLite', desc: 'Lightweight embedded SQL database engine' },
+      { name: 'Data Pipelines', desc: 'ETL workflows for data processing and analysis' },
+    ],
+  },
+  {
+    label: 'DevOps', color: '#f472b6',
     items: [
       { name: 'Docker', desc: 'Container platform for consistent deployments' },
-      { name: 'AWS', desc: 'Comprehensive cloud infrastructure platform' },
+      { name: 'Kubernetes', desc: 'Container orchestration for production scaling' },
       { name: 'Cloudflare', desc: 'Edge network for performance and security' },
-      { name: 'R2', desc: 'Object storage compatible with S3 API' },
-    ],
-  },
-  {
-    label: 'Creative', color: '#f472b6',
-    items: [
-      { name: 'Figma', desc: 'Collaborative interface design tool' },
-      { name: 'Blender', desc: 'Open-source 3D creation suite' },
-      { name: 'GLSL', desc: 'OpenGL Shading Language for GPU programming' },
-      { name: 'WebGPU', desc: 'Next-generation graphics API for the web' },
-      { name: 'D3', desc: 'Data-driven documents for visualization' },
+      { name: 'Firebase', desc: 'Backend-as-a-service for rapid development' },
+      { name: 'Prometheus', desc: 'Metrics collection and alerting toolkit' },
+      { name: 'Git', desc: 'Distributed version control system' },
+      { name: 'CI/CD', desc: 'Automated integration and deployment pipelines' },
     ],
   },
 ]
@@ -178,7 +186,7 @@ function TechConstellation() {
           <p className="text-sm text-charcoal-500 mt-3 font-light max-w-lg">Click a category to explore the tools and technologies behind each discipline.</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
           {clusters.map((c, i) => (
             <StackCard key={c.label} cluster={c} index={i} />
           ))}

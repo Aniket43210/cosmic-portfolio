@@ -11,45 +11,45 @@ const skillGroups = [
     accent: '#fb923c',
     items: [
       { name: 'React', pct: 92, icon: '◆' },
-      { name: 'Three.js', pct: 78, icon: '▲' },
-      { name: 'WebGL', pct: 71, icon: '●' },
+      { name: 'Next.js', pct: 78, icon: '▲' },
+      { name: 'TypeScript', pct: 82, icon: '●' },
       { name: 'Tailwind', pct: 88, icon: '■' },
     ],
   },
   {
-    label: 'Motion',
+    label: 'Backend',
     color: 'surge',
     bg: 'rgba(34,211,238,0.06)',
     accent: '#22d3ee',
     items: [
-      { name: 'Anime.js', pct: 90, icon: '◈' },
-      { name: 'GSAP', pct: 85, icon: '◇' },
-      { name: 'Framer', pct: 74, icon: '○' },
-      { name: 'Lenis', pct: 80, icon: '□' },
+      { name: 'Node.js', pct: 86, icon: '◈' },
+      { name: 'Python', pct: 79, icon: '◇' },
+      { name: 'Express', pct: 81, icon: '○' },
+      { name: 'FastAPI', pct: 74, icon: '□' },
     ],
   },
   {
-    label: 'Backend',
+    label: 'ML/AI',
     color: 'bloom',
     bg: 'rgba(217,70,239,0.06)',
     accent: '#d946ef',
     items: [
-      { name: 'Node.js', pct: 86, icon: '◉' },
-      { name: 'Python', pct: 79, icon: '◎' },
-      { name: 'Postgres', pct: 72, icon: '⬟' },
-      { name: 'Redis', pct: 68, icon: '⬡' },
+      { name: 'XGBoost', pct: 85, icon: '◉' },
+      { name: 'SHAP', pct: 78, icon: '◎' },
+      { name: 'CNN', pct: 72, icon: '⬟' },
+      { name: 'Transformers', pct: 68, icon: '⬡' },
     ],
   },
   {
-    label: 'Creative',
+    label: 'Infrastructure',
     color: 'emerald',
     bg: 'rgba(52,211,153,0.06)',
     accent: '#34d399',
     items: [
-      { name: 'Design Sys', pct: 83, icon: '▣' },
-      { name: 'Typography', pct: 76, icon: '▤' },
-      { name: 'GLSL', pct: 70, icon: '▥' },
-      { name: 'Blender', pct: 65, icon: '▦' },
+      { name: 'Docker', pct: 82, icon: '▣' },
+      { name: 'Cloudflare', pct: 75, icon: '▤' },
+      { name: 'PostgreSQL', pct: 78, icon: '▥' },
+      { name: 'Redis', pct: 65, icon: '▦' },
     ],
   },
 ]
@@ -164,7 +164,7 @@ function SkillGauge({ skill, color, accent, index, groupIndex }) {
         <span ref={iconRef} className="absolute inset-0 flex items-center justify-center text-[10px] md:text-xs pointer-events-none" style={{ color: hovered ? '#fff' : accent }}>{skill.icon}</span>
       </div>
       <div className="flex-1 min-w-0">
-        <span ref={labelRef} className="block text-xs md:text-sm font-medium truncate" style={{ color: hovered ? '#fff' : '#a1a1aa' }}>{skill.name}</span>
+        <span ref={labelRef} className="block text-xs md:text-sm font-medium" style={{ color: hovered ? '#fff' : '#a1a1aa' }}>{skill.name}</span>
           <span ref={pctRef} className="text-[10px] md:text-xs font-mono"></span>
       </div>
     </div>
