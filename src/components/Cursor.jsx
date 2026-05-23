@@ -5,13 +5,24 @@ function Cursor() {
   const ringRef = useRef(null)
   const dotRef = useRef(null)
   const glowRef = useRef(null)
-  const pos = useRef({ x: 0, y: 0 })
-  const target = useRef({ x: 0, y: 0 })
+  const pos = useRef({ x: -100, y: -100 })
+  const target = useRef({ x: -100, y: -100 })
   const hovering = useRef(false)
   const magnetic = useRef(false)
+  const isTouch = useRef(
+    typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+  )
 
   useEffect(() => {
+    if (isTouch.current) return
+
+    document.body.style.cursor = 'none'
+
     const handleMouse = (e) => { target.current.x = e.clientX; target.current.y = e.clientY }
+    const handleTouch = (e) => {
+      const t = e.touches[0]
+      if (t) { target.current.x = t.clientX; target.current.y = t.clientY }
+    }
 
     const hOn = (e) => {
       hovering.current = true
@@ -43,6 +54,7 @@ function Cursor() {
     })
 
     window.addEventListener('mousemove', handleMouse)
+    window.addEventListener('touchmove', handleTouch, { passive: true })
     let id, frameCount = 0
 
     function spawnParticle(x, y) {
@@ -82,7 +94,9 @@ function Cursor() {
     id = requestAnimationFrame(tick)
 
     return () => {
+      document.body.style.cursor = ''
       window.removeEventListener('mousemove', handleMouse)
+      window.removeEventListener('touchmove', handleTouch)
       cancelAnimationFrame(id)
     }
   }, [])
@@ -97,6 +111,8 @@ function Cursor() {
     observer.observe(document.body, { childList: true, subtree: true })
     return () => observer.disconnect()
   }, [])
+
+  if (isTouch.current) return null
 
   return (
     <>
