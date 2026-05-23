@@ -1,23 +1,35 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import anime from 'animejs'
 
-const DURATION = 5500
-const EXIT_MS = 370
-const CHAR_COUNT = 9
-
-const charAnims = 'Portfolio'.split('').map((c, i) => ({
-  char: c,
-  delay: 1600 + i * 40,
-  exitDelay: 4900 + i * 20,
-}))
+const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
 
 function LoadScreen() {
   const [show, setShow] = useState(true)
+  const logoRef = useRef(null)
+  const charsRef = useRef([])
+  const lineRef = useRef(null)
+  const subRef = useRef(null)
 
   useEffect(() => {
-    const timer = setTimeout(() => setShow(false), DURATION)
+    const timer = setTimeout(() => setShow(false), isMobile ? 2400 : 5500)
     return () => clearTimeout(timer)
   }, [])
+
+  useEffect(() => {
+    if (!show || isMobile) return
+
+    const tl = anime.timeline({})
+    tl
+      .add({ targets: logoRef.current, scale: [0, 1.3, 0.85, 1.1, 1], rotate: [0, 180, -30, 15, 0], duration: 1600, easing: 'easeOutElastic(1.4, 0.4)' })
+      .add({ targets: charsRef.current, opacity: [0, 1], translateY: [24, 0], duration: 500, delay: anime.stagger(40), easing: 'easeOutExpo' }, 1600)
+      .add({ targets: lineRef.current, scaleX: [0, 1], duration: 800, easing: 'easeOutCubic' }, 2600)
+      .add({ targets: subRef.current, opacity: [0, 1, 0], translateY: [10, 0, -10], duration: 700, easing: 'easeOutCubic' }, 3200)
+      .add({ targets: logoRef.current, scale: [1, 0.8], opacity: [1, 0], duration: 500, easing: 'easeInCubic' }, 4800)
+      .add({ targets: charsRef.current, opacity: [1, 0], translateY: [0, -12], duration: 400, easing: 'easeInCubic' }, 4900)
+
+    return () => tl.pause()
+  }, [show])
 
   return (
     <AnimatePresence mode="wait">
@@ -25,78 +37,47 @@ function LoadScreen() {
         <motion.div
           key="loadscreen"
           exit={{ opacity: 0 }}
-          transition={{ duration: EXIT_MS / 1000, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: isMobile ? 0.25 : 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="fixed inset-0 z-[9999] flex items-center justify-center"
           style={{ background: '#050505' }}
         >
-          <div className="flex flex-col items-center">
-            <motion.div
-              initial={{ scale: 0, rotate: 0, opacity: 0 }}
-              animate={{
-                scale: [0, 1.15, 0.9, 1.05, 1, 1, 0.85],
-                rotate: [0, 180, -25, 10, 0, 0, 0],
-                opacity: [0, 1, 1, 1, 1, 1, 0],
-              }}
-              transition={{
-                duration: DURATION / 1000,
-                ease: 'easeOut',
-                times: [0, 0.07, 0.14, 0.21, 0.28, 0.85, 1],
-              }}
-              className="w-16 h-16 md:w-20 md:h-20 rounded-sm mb-6"
-              style={{
-                background: 'linear-gradient(135deg, #fb923c, #22d3ee)',
-                boxShadow: '0 0 60px rgba(251,146,60,0.2)',
-              }}
-            />
-
-            <p className="text-sm font-semibold tracking-tight" style={{ color: 'rgba(255,255,255,0.6)' }}>
-              {charAnims.map(({ char, delay, exitDelay }) => (
-                <motion.span
-                  key={delay}
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: [0, 1, 1, 0], y: [24, 0, 0, -12] }}
-                  transition={{
-                    duration: (DURATION + 200) / 1000,
-                    ease: 'easeOut',
-                    times: [0, delay / DURATION, exitDelay / DURATION, (exitDelay + 300) / DURATION],
-                  }}
-                  className="inline-block"
-                >
-                  {char}
-                </motion.span>
-              ))}
-            </p>
-
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{
-                delay: 2.6,
-                duration: 0.8,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="h-px w-24 mt-4 origin-left"
-              style={{ background: 'linear-gradient(90deg, #fb923c, #22d3ee, transparent)' }}
-            />
-
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: [0, 1, 1, 0], y: [10, 0, 0, -10] }}
-              transition={{
-                delay: 3.2,
-                duration: 1.6,
-                ease: 'easeOut',
-                times: [0, 0.1, 0.7, 1],
-              }}
-              className="text-[10px] tracking-[0.3em] uppercase mt-3"
-              style={{ color: 'rgba(255,255,255,0.25)' }}
-            >
-              Crafting digital experiences
-            </motion.p>
-          </div>
+          {isMobile ? <MobileSplash /> : <DesktopSplash logoRef={logoRef} charsRef={charsRef} lineRef={lineRef} subRef={subRef} />}
         </motion.div>
       )}
     </AnimatePresence>
+  )
+}
+
+function MobileSplash() {
+  return (
+    <div className="flex flex-col items-center">
+      <motion.div
+        initial={{ scale: 0.6, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="w-14 h-14 rounded-sm mb-5"
+        style={{
+          background: 'linear-gradient(135deg, #fb923c, #22d3ee)',
+          boxShadow: '0 0 40px rgba(251,146,60,0.2)',
+        }}
+      />
+      <p className="text-xs font-semibold tracking-tight" style={{ color: 'rgba(255,255,255,0.5)' }}>Portfolio</p>
+    </div>
+  )
+}
+
+function DesktopSplash({ logoRef, charsRef, lineRef, subRef }) {
+  return (
+    <div className="flex flex-col items-center">
+      <div ref={logoRef} className="w-20 h-20 rounded-sm mb-6" style={{ background: 'linear-gradient(135deg, #fb923c, #22d3ee)', boxShadow: '0 0 60px rgba(251,146,60,0.2)' }} />
+      <p className="text-sm font-semibold tracking-tight" style={{ color: 'rgba(255,255,255,0.6)' }}>
+        {'Portfolio'.split('').map((c, i) => (
+          <span key={i} ref={(el) => { charsRef.current[i] = el }} className="inline-block" style={{ opacity: 0 }}>{c}</span>
+        ))}
+      </p>
+      <div ref={lineRef} className="h-px w-24 mt-4 origin-left" style={{ background: 'linear-gradient(90deg, #fb923c, #22d3ee, transparent)', transform: 'scaleX(0)' }} />
+      <p ref={subRef} className="text-[10px] tracking-[0.3em] uppercase mt-3" style={{ color: 'rgba(255,255,255,0.25)', opacity: 0 }}>Crafting digital experiences</p>
+    </div>
   )
 }
 
