@@ -12,7 +12,7 @@ function LoadScreen() {
   const subRef = useRef(null)
 
   useEffect(() => {
-    const timer = setTimeout(() => setShow(false), 3500)
+    const timer = setTimeout(() => setShow(false), 5500)
     return () => clearTimeout(timer)
   }, [])
 
@@ -21,12 +21,13 @@ function LoadScreen() {
 
     const tl = anime.timeline({})
     tl
-      .add({ targets: logoRef.current, scale: [0, 1.3, 0.85, 1.1, 1], rotate: [0, 180, -30, 15, 0], duration: 1200, easing: 'easeOutElastic(1.4, 0.4)' })
-      .add({ targets: charsRef.current, opacity: [0, 1], translateY: [20, 0], duration: 400, delay: anime.stagger(30), easing: 'easeOutExpo' }, 1000)
-      .add({ targets: lineRef.current, scaleX: [0, 1], duration: 600, easing: 'easeOutCubic' }, 1800)
-      .add({ targets: subRef.current, opacity: [0, 1, 0], translateY: [8, 0, -8], duration: 500, easing: 'easeOutCubic' }, 2300)
-      .add({ targets: logoRef.current, scale: [1, 0.8], opacity: [1, 0], duration: 400, easing: 'easeInCubic' }, 3000)
-      .add({ targets: charsRef.current, opacity: [1, 0], translateY: [0, -10], duration: 300, easing: 'easeInCubic' }, 3050)
+      .add({ targets: logoRef.current, scale: [0, 1.3, 0.85, 1.1, 1], rotate: [0, 180, -30, 15, 0], duration: 1600, easing: 'easeOutElastic(1.4, 0.4)' })
+      .add({ targets: glowRef.current, scale: [0.5, 1.3], opacity: [0, 0.2, 0], duration: 2000, easing: 'easeInOutSine' }, 0)
+      .add({ targets: charsRef.current, opacity: [0, 1], translateY: [24, 0], duration: 500, delay: anime.stagger(40), easing: 'easeOutExpo' }, 1600)
+      .add({ targets: lineRef.current, scaleX: [0, 1], duration: 800, easing: 'easeOutCubic' }, 2600)
+      .add({ targets: subRef.current, opacity: [0, 1, 0], translateY: [10, 0, -10], duration: 700, easing: 'easeOutCubic' }, 3200)
+      .add({ targets: logoRef.current, scale: [1, 0.8], opacity: [1, 0], duration: 500, easing: 'easeInCubic' }, 4800)
+      .add({ targets: charsRef.current, opacity: [1, 0], translateY: [0, -12], duration: 400, easing: 'easeInCubic' }, 4900)
 
     return () => tl.pause()
   }, [show])
