@@ -9,7 +9,7 @@ export default defineConfig({
         manualChunks: {
           three: ['three'],
           framer: ['framer-motion'],
-          motion: ['animejs', 'gsap'],
+          motion: ['gsap'],
         },
       },
     },

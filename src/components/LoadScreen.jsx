@@ -22,7 +22,6 @@ function LoadScreen() {
     const tl = anime.timeline({})
     tl
       .add({ targets: logoRef.current, scale: [0, 1.3, 0.85, 1.1, 1], rotate: [0, 180, -30, 15, 0], duration: 1600, easing: 'easeOutElastic(1.4, 0.4)' })
-      .add({ targets: glowRef.current, scale: [0.5, 1.3], opacity: [0, 0.2, 0], duration: 2000, easing: 'easeInOutSine' }, 0)
       .add({ targets: charsRef.current, opacity: [0, 1], translateY: [24, 0], duration: 500, delay: anime.stagger(40), easing: 'easeOutExpo' }, 1600)
       .add({ targets: lineRef.current, scaleX: [0, 1], duration: 800, easing: 'easeOutCubic' }, 2600)
       .add({ targets: subRef.current, opacity: [0, 1, 0], translateY: [10, 0, -10], duration: 700, easing: 'easeOutCubic' }, 3200)
