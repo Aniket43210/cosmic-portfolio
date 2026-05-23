@@ -12,7 +12,7 @@ function LoadScreen() {
   const subRef = useRef(null)
 
   useEffect(() => {
-    const timer = setTimeout(() => setShow(false), 8000)
+    const timer = setTimeout(() => setShow(false), 3500)
     return () => clearTimeout(timer)
   }, [])
 
@@ -21,14 +21,12 @@ function LoadScreen() {
 
     const tl = anime.timeline({})
     tl
-      .add({ targets: logoRef.current, scale: [0, 1.3, 0.85, 1.1, 1], rotate: [0, 180, -30, 15, 0], duration: 1800, easing: 'easeOutElastic(1.4, 0.4)' })
-      .add({ targets: glowRef.current, scale: [0.5, 1.5, 0.8, 1.2], opacity: [0, 0.4, 0.1, 0.3, 0], duration: 3000, easing: 'easeInOutSine', loop: 2 }, 0)
-      .add({ targets: charsRef.current, opacity: [0, 1], translateY: [30, 0], scale: [0.5, 1], duration: 600, delay: anime.stagger(50), easing: 'easeOutExpo' }, 2000)
-      .add({ targets: lineRef.current, scaleX: [0, 1], duration: 1000, easing: 'easeOutCubic' }, 3500)
-      .add({ targets: subRef.current, opacity: [0, 1, 0], translateY: [10, 0, -10], duration: 800, easing: 'easeOutCubic' }, 4200)
-      .add({ targets: ringRef.current, scale: [0.8, 1], rotate: [0, 360], opacity: [0, 0.15, 0], duration: 4000, easing: 'linear' }, 1000)
-      .add({ targets: logoRef.current, scale: [1, 0.8], opacity: [1, 0], duration: 600, easing: 'easeInCubic' }, 7000)
-      .add({ targets: charsRef.current, opacity: [1, 0], translateY: [0, -15], duration: 500, delay: anime.stagger(30), easing: 'easeInCubic' }, 7100)
+      .add({ targets: logoRef.current, scale: [0, 1.3, 0.85, 1.1, 1], rotate: [0, 180, -30, 15, 0], duration: 1200, easing: 'easeOutElastic(1.4, 0.4)' })
+      .add({ targets: charsRef.current, opacity: [0, 1], translateY: [20, 0], duration: 400, delay: anime.stagger(30), easing: 'easeOutExpo' }, 1000)
+      .add({ targets: lineRef.current, scaleX: [0, 1], duration: 600, easing: 'easeOutCubic' }, 1800)
+      .add({ targets: subRef.current, opacity: [0, 1, 0], translateY: [8, 0, -8], duration: 500, easing: 'easeOutCubic' }, 2300)
+      .add({ targets: logoRef.current, scale: [1, 0.8], opacity: [1, 0], duration: 400, easing: 'easeInCubic' }, 3000)
+      .add({ targets: charsRef.current, opacity: [1, 0], translateY: [0, -10], duration: 300, easing: 'easeInCubic' }, 3050)
 
     return () => tl.pause()
   }, [show])
@@ -39,7 +37,7 @@ function LoadScreen() {
         <motion.div
           key="loadscreen"
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden"
           style={{ background: '#050505' }}
         >
@@ -47,14 +45,14 @@ function LoadScreen() {
           <div ref={glowRef} className="absolute w-48 h-48 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(251,146,60,0.15), transparent)', opacity: 0 }} />
 
           <div className="flex flex-col items-center relative z-10">
-            <div ref={logoRef} className="w-20 h-20 rounded-sm mb-6" style={{ background: 'linear-gradient(135deg, #fb923c, #22d3ee)', boxShadow: '0 0 60px rgba(251,146,60,0.2)' }} />
+            <div ref={logoRef} className="w-16 h-16 md:w-20 md:h-20 rounded-sm mb-6" style={{ background: 'linear-gradient(135deg, #fb923c, #22d3ee)', boxShadow: '0 0 60px rgba(251,146,60,0.2)', willChange: 'transform, opacity' }} />
             <p className="text-sm font-semibold tracking-tight" style={{ color: 'rgba(255,255,255,0.6)' }}>
               {'Portfolio'.split('').map((c, i) => (
-                <span key={i} ref={(el) => { charsRef.current[i] = el }} className="inline-block" style={{ opacity: 0 }}>{c}</span>
+                <span key={i} ref={(el) => { charsRef.current[i] = el }} className="inline-block" style={{ opacity: 0, willChange: 'transform, opacity' }}>{c}</span>
               ))}
             </p>
-            <div ref={lineRef} className="h-px w-24 mt-4 origin-left" style={{ background: 'linear-gradient(90deg, #fb923c, #22d3ee, transparent)', transform: 'scaleX(0)' }} />
-            <p ref={subRef} className="text-[10px] tracking-[0.3em] uppercase mt-3" style={{ color: 'rgba(255,255,255,0.25)', opacity: 0 }}>Crafting digital experiences</p>
+            <div ref={lineRef} className="h-px w-24 mt-4 origin-left" style={{ background: 'linear-gradient(90deg, #fb923c, #22d3ee, transparent)', transform: 'scaleX(0)', willChange: 'transform' }} />
+            <p ref={subRef} className="text-[10px] tracking-[0.3em] uppercase mt-3" style={{ color: 'rgba(255,255,255,0.25)', opacity: 0, willChange: 'transform, opacity' }}>Crafting digital experiences</p>
           </div>
         </motion.div>
       )}

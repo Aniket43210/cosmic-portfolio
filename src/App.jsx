@@ -95,6 +95,15 @@ function App() {
   const firstLoad = useRef(true)
   const lenisRef = useRef(null)
   const scrollRef = useRef(0)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)')
+    setIsMobile(mq.matches)
+    const handler = (e) => setIsMobile(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -162,10 +171,10 @@ function App() {
         <>
           {firstLoad.current && <LoadScreen />}
           <RippleEffect />
-          <Background scrollRef={scrollRef} />
-          <ThreeScene scrollRef={scrollRef} />
-          <div className="grain" />
-          <Particles count={6} />
+          {!isMobile && <Background scrollRef={scrollRef} />}
+          {!isMobile && <ThreeScene scrollRef={scrollRef} />}
+          {!isMobile && <div className="grain" />}
+          <Particles count={isMobile ? 0 : 6} />
           <Cursor />
           <Navbar />
           <main>
