@@ -169,7 +169,7 @@ function App() {
         </AnimatePresence>
       ) : (
         <>
-          {firstLoad.current && <LoadScreen />}
+          {firstLoad.current && typeof window !== 'undefined' && window.innerWidth >= 768 && <LoadScreen />}
           <RippleEffect />
           {!isMobile && <Background scrollRef={scrollRef} />}
           {!isMobile && <ThreeScene scrollRef={scrollRef} />}

@@ -2,8 +2,6 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import anime from 'animejs'
 
-const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
-
 function LoadScreen() {
   const [show, setShow] = useState(true)
   const logoRef = useRef(null)
@@ -12,12 +10,12 @@ function LoadScreen() {
   const subRef = useRef(null)
 
   useEffect(() => {
-    const timer = setTimeout(() => setShow(false), isMobile ? 2400 : 5500)
+    const timer = setTimeout(() => setShow(false), 5500)
     return () => clearTimeout(timer)
   }, [])
 
   useEffect(() => {
-    if (!show || isMobile) return
+    if (!show) return
 
     const tl = anime.timeline({})
     tl
@@ -37,41 +35,23 @@ function LoadScreen() {
         <motion.div
           key="loadscreen"
           exit={{ opacity: 0 }}
-          transition={{ duration: isMobile ? 0.25 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="fixed inset-0 z-[9999] flex items-center justify-center"
           style={{ background: '#050505' }}
         >
-          {isMobile ? <MobileSplash /> : <DesktopSplash logoRef={logoRef} charsRef={charsRef} lineRef={lineRef} subRef={subRef} />}
+          <div className="flex flex-col items-center">
+            <div ref={logoRef} className="w-20 h-20 rounded-sm mb-6" style={{ background: 'linear-gradient(135deg, #fb923c, #22d3ee)', boxShadow: '0 0 60px rgba(251,146,60,0.2)' }} />
+            <p className="text-sm font-semibold tracking-tight" style={{ color: 'rgba(255,255,255,0.6)' }}>
+              {'Portfolio'.split('').map((c, i) => (
+                <span key={i} ref={(el) => { charsRef.current[i] = el }} className="inline-block" style={{ opacity: 0 }}>{c}</span>
+              ))}
+            </p>
+            <div ref={lineRef} className="h-px w-24 mt-4 origin-left" style={{ background: 'linear-gradient(90deg, #fb923c, #22d3ee, transparent)', transform: 'scaleX(0)' }} />
+            <p ref={subRef} className="text-[10px] tracking-[0.3em] uppercase mt-3" style={{ color: 'rgba(255,255,255,0.25)', opacity: 0 }}>Crafting digital experiences</p>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
-  )
-}
-
-function MobileSplash() {
-  return (
-    <div className="flex flex-col items-center">
-      <div className="w-14 h-14 rounded-sm mb-5" style={{
-        background: 'linear-gradient(135deg, #fb923c, #22d3ee)',
-        boxShadow: '0 0 40px rgba(251,146,60,0.2)',
-      }} />
-      <p className="text-xs font-semibold tracking-tight" style={{ color: 'rgba(255,255,255,0.5)' }}>Portfolio</p>
-    </div>
-  )
-}
-
-function DesktopSplash({ logoRef, charsRef, lineRef, subRef }) {
-  return (
-    <div className="flex flex-col items-center">
-      <div ref={logoRef} className="w-20 h-20 rounded-sm mb-6" style={{ background: 'linear-gradient(135deg, #fb923c, #22d3ee)', boxShadow: '0 0 60px rgba(251,146,60,0.2)' }} />
-      <p className="text-sm font-semibold tracking-tight" style={{ color: 'rgba(255,255,255,0.6)' }}>
-        {'Portfolio'.split('').map((c, i) => (
-          <span key={i} ref={(el) => { charsRef.current[i] = el }} className="inline-block" style={{ opacity: 0 }}>{c}</span>
-        ))}
-      </p>
-      <div ref={lineRef} className="h-px w-24 mt-4 origin-left" style={{ background: 'linear-gradient(90deg, #fb923c, #22d3ee, transparent)', transform: 'scaleX(0)' }} />
-      <p ref={subRef} className="text-[10px] tracking-[0.3em] uppercase mt-3" style={{ color: 'rgba(255,255,255,0.25)', opacity: 0 }}>Crafting digital experiences</p>
-    </div>
   )
 }
 
