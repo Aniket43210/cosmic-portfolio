@@ -51,16 +51,10 @@ function LoadScreen() {
 function MobileSplash() {
   return (
     <div className="flex flex-col items-center">
-      <motion.div
-        initial={{ scale: 0.6, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="w-14 h-14 rounded-sm mb-5"
-        style={{
-          background: 'linear-gradient(135deg, #fb923c, #22d3ee)',
-          boxShadow: '0 0 40px rgba(251,146,60,0.2)',
-        }}
-      />
+      <div className="w-14 h-14 rounded-sm mb-5" style={{
+        background: 'linear-gradient(135deg, #fb923c, #22d3ee)',
+        boxShadow: '0 0 40px rgba(251,146,60,0.2)',
+      }} />
       <p className="text-xs font-semibold tracking-tight" style={{ color: 'rgba(255,255,255,0.5)' }}>Portfolio</p>
     </div>
   )
