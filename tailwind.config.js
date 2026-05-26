@@ -4,15 +4,35 @@ export default {
   theme: {
     extend: {
       colors: {
-        midnight: { 50: '#e6e6f0', 100: '#b3b3cc', 200: '#8080a8', 300: '#4d4d85', 400: '#262661', 500: '#14143d', 600: '#0f0f2e', 700: '#0a0a1f', 800: '#070712', 900: '#090909', 950: '#050505' },
-        ember: { 400: '#fb923c', 500: '#f97316' },
-        surge: { 400: '#22d3ee', 500: '#06b6d4' },
-        bloom: { 400: '#d946ef', 500: '#c026d3' },
-        charcoal: { 300: '#d4d4d8', 400: '#a1a1aa', 500: '#71717a', 600: '#52525b', 700: '#3f3f46' },
+        surface: '#09090B',
+        secondary: '#111827',
+        card: 'rgba(20,20,30,0.7)',
+        primary: '#F8FAFC',
+        muted: '#94A3B8',
+        accent: {
+          amber: '#F59E0B',
+          cyan: '#22D3EE',
+          pink: '#EC4899',
+          warm: '#D97706',
+          light: '#FBBF24',
+        },
+        deep: { 800: '#1E293B', 900: '#0F172A', 950: '#09090B' },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Inter Tight', 'Inter', 'system-ui', 'sans-serif'],
+      },
+      borderRadius: {
+        '2xl': '0.875rem',
+        '3xl': '1.125rem',
+        '4xl': '1.5rem',
+      },
+      boxShadow: {
+        glass: '0 0 0 1px rgba(255,255,255,0.05), 0 8px 32px rgba(0,0,0,0.4)',
+        card: '0 2px 8px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.1)',
+        glow: '0 0 30px rgba(245,158,11,0.08)',
+        glowCyan: '0 0 30px rgba(34,211,238,0.08)',
+        glowPink: '0 0 30px rgba(236,72,153,0.08)',
       },
     },
   },

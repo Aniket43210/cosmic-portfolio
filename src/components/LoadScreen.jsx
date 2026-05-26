@@ -40,14 +40,14 @@ function LoadScreen() {
           style={{ background: '#050505' }}
         >
           <div className="flex flex-col items-center">
-            <div ref={logoRef} className="w-20 h-20 rounded-sm mb-6" style={{ background: 'linear-gradient(135deg, #fb923c, #22d3ee)', boxShadow: '0 0 60px rgba(251,146,60,0.2)' }} />
-            <p className="text-sm font-semibold tracking-tight" style={{ color: 'rgba(255,255,255,0.6)' }}>
+            <div ref={logoRef} className="w-20 h-20 rounded-sm mb-6" style={{ background: 'linear-gradient(135deg, #F59E0B, #22D3EE)', boxShadow: '0 0 40px rgba(245,158,11,0.15)' }} />
+            <p className="text-sm font-semibold tracking-tight" style={{ color: 'rgba(255,255,255,0.5)' }}>
               {'Portfolio'.split('').map((c, i) => (
                 <span key={i} ref={(el) => { charsRef.current[i] = el }} className="inline-block" style={{ opacity: 0 }}>{c}</span>
               ))}
             </p>
-            <div ref={lineRef} className="h-px w-24 mt-4 origin-left" style={{ background: 'linear-gradient(90deg, #fb923c, #22d3ee, transparent)', transform: 'scaleX(0)' }} />
-            <p ref={subRef} className="text-[10px] tracking-[0.3em] uppercase mt-3" style={{ color: 'rgba(255,255,255,0.25)', opacity: 0 }}>Crafting digital experiences</p>
+            <div ref={lineRef} className="h-px w-24 mt-4 origin-left" style={{ background: 'linear-gradient(90deg, #F59E0B, #22D3EE, transparent)', transform: 'scaleX(0)' }} />
+            <p ref={subRef} className="text-[10px] tracking-[0.3em] uppercase mt-3" style={{ color: 'rgba(255,255,255,0.2)', opacity: 0 }}>Crafting digital experiences</p>
           </div>
         </motion.div>
       )}

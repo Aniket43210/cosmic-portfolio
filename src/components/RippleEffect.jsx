@@ -2,10 +2,10 @@ import { useEffect, useRef } from 'react'
 import anime from 'animejs'
 
 const COLORS = [
-  'rgba(251,146,60,0.5)',
-  'rgba(34,211,238,0.5)',
-  'rgba(217,70,239,0.4)',
-  'rgba(52,211,153,0.4)',
+  'rgba(245,158,11,0.3)',
+  'rgba(34,211,238,0.25)',
+  'rgba(236,72,153,0.2)',
+  'rgba(251,191,36,0.2)',
 ]
 
 function RippleEffect() {

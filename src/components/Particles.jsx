@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import anime from 'animejs'
 
-const COLORS = ['rgba(251,146,60,', 'rgba(34,211,238,', 'rgba(217,70,239,']
+const COLORS = ['rgba(245,158,11,', 'rgba(34,211,238,', 'rgba(236,72,153,']
 
 function Particles({ count = 30 }) {
   const ref = useRef(null)

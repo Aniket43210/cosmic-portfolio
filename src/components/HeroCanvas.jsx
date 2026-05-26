@@ -17,7 +17,7 @@ function HeroCanvas() {
       a: 0.3 + Math.random() * 0.7,
       speed: 0.2 + Math.random() * 0.5,
       phase: Math.random() * Math.PI * 2,
-      color: ['rgba(251,146,60,', 'rgba(34,211,238,', 'rgba(217,70,239,'][Math.floor(Math.random() * 3)],
+      color: ['rgba(245,158,11,', 'rgba(34,211,238,', 'rgba(236,72,153,'][Math.floor(Math.random() * 3)],
     }))
 
     function draw() {

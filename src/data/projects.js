@@ -53,7 +53,7 @@ export const projects = [
     ],
     year: '2024',
     role: 'AI Engineer',
-    url: 'https://github.com/Aniket43210/project-3',
+    url: 'https://project-3-6lx7.onrender.com/',
     context: {
       problem: 'Students and professionals struggle to make informed career decisions due to the overwhelming number of options and lack of data-driven guidance. Traditional career counseling is subjective, expensive, and doesn\'t scale.',
       solution: 'Built an ML-powered API that takes a user\'s skills, interests, education, and experience, engineering 70+ features to predict the most suitable career paths with 96.4% accuracy across 62 possible careers using a 3-level hierarchical XGBoost classifier.',
@@ -92,7 +92,7 @@ export const projects = [
     ],
     year: '2025',
     role: 'AI Engineer',
-    url: 'https://github.com/Aniket43210/project-2',
+    url: 'https://project-2-45ee.onrender.com/web/index.html',
     context: {
       problem: 'Astronomical survey datasets (SDSS, Gaia, Kepler/TESS) contain millions of stellar spectra and light curves, but analyzing this data requires significant domain expertise and computational resources. Researchers lack accessible tools to classify stellar types and analyze variability patterns efficiently.',
       solution: 'Developed a multi-modal ML platform with CNN-based spectral classification for stellar type prediction and Transformer models for light curve variability analysis. The system provides REST API endpoints for predictions, data ingestion, and pipeline management with incremental sync capabilities.',
@@ -129,7 +129,7 @@ export const projects = [
     ],
     year: '2026',
     role: 'Full Stack Developer',
-    url: 'https://github.com/Aniket43210/personal',
+    url: 'https://personal-1-qgsb.onrender.com/',
     context: {
       problem: 'Managing personal finances across multiple India bank accounts is tedious. Most Indian banking portals lack consolidated views, automatic categorization, or spending analytics. Existing third-party tools require sharing sensitive banking credentials.',
       solution: 'Built a secure self-hosted finance tracker that syncs with India banking providers in real-time. The system automatically categorizes transactions, provides interactive dashboards with spending breakdowns, and maintains full security with JWT auth, bcrypt hashing, and parameterized SQL queries.',
